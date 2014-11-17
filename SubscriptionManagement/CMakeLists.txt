@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 2.8 )
 
-project( SubscriptionHandler )
+project( SubscriptionManagement )
 
 set ( CMAKE_CXX_FLAGS "-Wall -std=c++11" )
 
@@ -14,7 +14,7 @@ set( SOURCES
      main.cc
    )
 
-add_executable( SubscriptionHandler
+add_executable( subscrptions
                 ${HEADERS}
                 ${SOURCES}
               )
