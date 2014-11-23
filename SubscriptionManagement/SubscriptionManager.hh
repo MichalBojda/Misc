@@ -9,16 +9,14 @@ class SubscriptionManager
 {
     public:
 
-        using SubscriptionCallback = std::function< void( void ) >;
-        using Subscriptions = std::set< SubscriptionCallback >;
+        using SubscriptionCallback =    std::function< void( void ) >;
+        using Subscriptions =           std::set< SubscriptionCallback >;
 
         ~SubscriptionManager();
 
         SubscriptionHandler subscribe( const SubscriptionCallback& aCallback );
 
-        void unsubscribe( Subscriptions::iterator aSubscription );
-
-        void triggerCallbacks();
+        void unsubscribe( const Subscriptions::iterator& aSubscription );
 
     private:
 

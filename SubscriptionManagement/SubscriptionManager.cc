@@ -5,17 +5,19 @@ SubscriptionManager::~SubscriptionManager()
 
 }
 
-SubscriptionHandler subscribe( const SubscriptionCallback& aCallback )
+SubscriptionHandler SubscriptionManager::subscribe( const SubscriptionCallback& aCallback )
 {
+    Subscriptions::iterator lInserted = iSubscriptions.insert( aCallback ).first;
 
+    return SubscriptionHandler( this );
 }
 
-void unsubscribe( Subscriptions::iterator aSubscription )
-{
+//void SubscriptionManager::unsubscribe( const Subscriptions::iterator& /*aSubscription*/ )
+//{
+//
+//}
 
-}
-
-void triggerCallbacks()
+void SubscriptionManager::triggerCallbacks()
 {
 
 }

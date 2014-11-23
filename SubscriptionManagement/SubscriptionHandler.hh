@@ -2,38 +2,27 @@
 
 #include <memory>
 
-#include "SubscriptionManager.hh"
-
-//class SubscriptionManager;
+class SubscriptionManager;
 
 class SubscriptionHandler
 {
     public:
 
-        SubscriptionHandler( SubscriptionManager* aManager, const SubscriptionManager::Subscriptions::iterator& aSubscription );
+        using SubscriptionCallback = std::function< void( void ) >;
+
+
+        SubscriptionHandler( SubscriptionManager* aManager, const SubscriptionCallback& aCallback );
+
+        SubscriptionHandler( SubscriptionHandler&& aOther ) = default;
 
         ~SubscriptionHandler();
 
-        void unsubscribe();
-
-        void resubscribe();
-
     private:
 
-        struct Unsubscriber
-        {
-            Unsubscriber( const SubscriptionManager::Subscriptions::iterator& aIterator );
 
-            ~Unsubscriber();
+        using ManagerPtr = std::unique_ptr< SubscriptionManager >;
 
-            void operator()( SubscriptionManager* aManager );
-
-            SubscriptionManager::Subscriptions::iterator iSubscription;
-        };
-
-        using SubscriptionService = std::unique_ptr< SubscriptionManager, Unsubscriber >;
-
-        SubscriptionService iManager;
-        SubscriptionService iUnsubscribedManager;
+        ManagerPtr              iManagerPtr;
+        SubscriptionCallback    iCallback;
 };
 

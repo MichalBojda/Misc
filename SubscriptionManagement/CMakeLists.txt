@@ -8,10 +8,14 @@ set ( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin )
 set ( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib )
 
 set( HEADERS
+     SubscriptionManager.hh
+     SubscriptionHandler.hh
    )
 
 set( SOURCES
      main.cc
+     SubscriptionManager.cc
+     SubscriptionHandler.cc
    )
 
 add_executable( subscrptions
